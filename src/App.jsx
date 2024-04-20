@@ -1,23 +1,41 @@
-import { useState } from "react";
-import ControlledCarousel from "./components/Carousel";
-import Login from "./components/Login";
+import { lazy, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { peopleObjectList } from "./utils/peopleObjectList";
+import LogoSpinner from "./components/LogoSpinner";
+import AppLayout from "./pages/AppLayout";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
+const Login = lazy(() => import("./pages/Login"));
 
 function App() {
-  const [showToast, setShowToast] = useState(false);
-  const [infoToast, setInfoToast] = useState({});
-  function handleToast(id) {
-    setShowToast(true);
-    setInfoToast(peopleObjectList.find((obj) => obj.id === id));
-  }
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   return (
-    <>
-      {showToast && <div className="nombreToast">Nombre : {infoToast.nombre}</div>}
-      <ControlledCarousel handleToast={handleToast} />
-      <Login></Login>
-    </>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="login"
+            element={loading ? <LogoSpinner /> : <Login />}
+          />
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

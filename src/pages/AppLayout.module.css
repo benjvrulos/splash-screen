@@ -1,0 +1,19 @@
+.layoutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.title {
+  text-align: center;
+}
+.toastLabel {
+  font-size: 20px;
+  color: black;
+  text-align: center;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}

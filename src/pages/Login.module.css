@@ -1,0 +1,34 @@
+.loginContainer {
+  margin: 0 50px;
+}
+
+.login {
+  margin: 100px auto;
+  margin-bottom: 0;
+  max-width: 500px;
+  background-color: #4c6ef5;
+  border-radius: 9px;
+  padding: 32px 16px;
+  color: #fff;
+}
+
+.loginHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginLogo {
+  width: 30%;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.errorMessage {
+  margin: 0;
+  color: red;
+}
